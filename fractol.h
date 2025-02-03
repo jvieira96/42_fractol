@@ -6,7 +6,7 @@
 /*   By: jpedro-f <jpedro-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 22:25:34 by jpedro-f          #+#    #+#             */
-/*   Updated: 2025/02/01 17:01:08 by jpedro-f         ###   ########.fr       */
+/*   Updated: 2025/02/03 16:56:05 by jpedro-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,8 +89,14 @@ typedef struct s_fractal
 	//Hooks member variables
 	double	escaped_value; // hypotenuse
 	int		iterations_defenition; // value tight with image quality and rendering speed 
+	// values to move the mandelbrot
 	double	shift_x;
 	double	shift_y;
+	// value to zoom in or zoom out]
+	double	zoom;
+	// in case its julia
+	double	julia_x;
+	double	julia_y;
 }			t_fractal;
 
 // init.c
@@ -98,6 +104,8 @@ void	ft_fractal_init(t_fractal *fractal);
 
 // render.c
 void	ft_handle_pixel(int x, int y, t_fractal *fractal);
+void	ft_julia(int x, int y, t_fractal *fractal);
+void	ft_mandelbrot(int x, int y, t_fractal *fractal);
 void	ft_fractal_render(t_fractal *fractal);
 
 
@@ -105,9 +113,11 @@ void	ft_fractal_render(t_fractal *fractal);
 double	ft_map(double unscaled_num, double new_min, double new_max, double old_max);
 t_complex	ft_sum_complex(t_complex z1, t_complex z2);
 t_complex	ft_square_complex(t_complex	z);
+double	ft_atodbl(char	*str);
 
 // events
 int	ft_key_handle(int keysym, t_fractal *fractal);
+int	ft_mouse_handle(int button, int x, int y, t_fractal *fractal);
 int	ft_close_handle(t_fractal *fractal);
 
 #endif

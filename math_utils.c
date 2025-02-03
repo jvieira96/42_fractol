@@ -6,7 +6,7 @@
 /*   By: jpedro-f <jpedro-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 23:42:21 by jpedro-f          #+#    #+#             */
-/*   Updated: 2025/02/01 14:18:16 by jpedro-f         ###   ########.fr       */
+/*   Updated: 2025/02/03 15:39:10 by jpedro-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,39 @@ t_complex	ft_square_complex(t_complex	z)
 	result.x = (z.x * z.x) - (z.y * z.y);
 	result.y = 2 * z.x * z.y;
 	return (result);
+}
+
+double	ft_atodbl(char	*str)
+{
+	long	int_part;
+	double	fractional_part;
+	int		sign;
+	double	power;
+
+	power = 1;
+	int_part = 0;
+	fractional_part = 0;
+	sign = 1;
+	while (*str == 32 || (*str >= 9 && *str<= 13))
+		str++;
+	while (*str == '+' || *str == '-')
+	{
+		if (*str == '-')
+			sign = -1;
+		str++;
+	}
+	while (*str != '.' && *str)
+	{
+		int_part = (int_part * 10) + (*str - '0');
+		str++;
+	}	
+	if (*str == '.')
+		str++;
+	while (*str)
+	{
+		power = power / 10;
+		fractional_part = fractional_part + (*str - '0') * power;
+		str++;
+	}
+	return((int_part + fractional_part) * sign);
 }

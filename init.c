@@ -6,7 +6,7 @@
 /*   By: jpedro-f <jpedro-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 23:08:17 by jpedro-f          #+#    #+#             */
-/*   Updated: 2025/02/01 16:59:21 by jpedro-f         ###   ########.fr       */
+/*   Updated: 2025/02/03 18:22:50 by jpedro-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,10 @@ static void	malloc_error(void)
 void ft_data_init(t_fractal *fractal)
 {
 	fractal->escaped_value = 4; // 2^2 -> hypotenuse
-	fractal->iterations_defenition = 42;
+	fractal->iterations_defenition = 10;
 	fractal->shift_x = 0.0;
 	fractal->shift_y = 0.0;
+	fractal->zoom = 1.0;
 }
 
 void	ft_events_init(t_fractal *fractal)
@@ -36,11 +37,11 @@ void	ft_events_init(t_fractal *fractal)
 			KeyPressMask,
 			ft_key_handle,
 			fractal);
-/* 	mlx_hook(fractal->mlx_window,
+	mlx_hook(fractal->mlx_window,
 			ButtonPress,
 			ButtonPressMask,
 			ft_mouse_handle,
-			fractal); */
+			fractal);
 	mlx_hook(fractal->mlx_window,
 			DestroyNotify,
 			StructureNotifyMask,

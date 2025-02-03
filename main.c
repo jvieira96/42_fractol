@@ -6,7 +6,7 @@
 /*   By: jpedro-f <jpedro-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 22:14:20 by jpedro-f          #+#    #+#             */
-/*   Updated: 2025/01/30 23:34:48 by jpedro-f         ###   ########.fr       */
+/*   Updated: 2025/02/03 18:17:00 by jpedro-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,11 @@ int	main(int argc, char **argv)
 		|| argc == 4 && !ft_strncmp(argv[1], "julia", 5))
 	{
 		fractal.name = argv[1];
+		if (!ft_strncmp(fractal.name, "julia", 5))
+		{
+			fractal.julia_x = ft_atodbl(argv[2]);
+			fractal.julia_y = ft_atodbl(argv[3]);
+		}
 		ft_fractal_init(&fractal);
 		ft_fractal_render(&fractal);
 		mlx_loop(fractal.mlx_connection);
