@@ -6,7 +6,7 @@
 /*   By: jpedro-f <jpedro-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 16:15:08 by jpedro-f          #+#    #+#             */
-/*   Updated: 2025/02/03 14:51:34 by jpedro-f         ###   ########.fr       */
+/*   Updated: 2025/02/04 16:23:59 by jpedro-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@
 */
 int	ft_close_handle(t_fractal *fractal)
 {
-		mlx_destroy_image(fractal->mlx_connection, fractal->img.img_ptr);
-		mlx_destroy_window(fractal->mlx_connection, fractal->mlx_window);
-		mlx_destroy_display(fractal->mlx_connection);
-		free(fractal->mlx_connection);
-		exit(EXIT_SUCCESS);
+	mlx_destroy_image(fractal->mlx_connection, fractal->img.img_ptr);
+	mlx_destroy_window(fractal->mlx_connection, fractal->mlx_window);
+	mlx_destroy_display(fractal->mlx_connection);
+	free(fractal->mlx_connection);
+	exit(EXIT_SUCCESS);
 }
 
 /*
@@ -32,13 +32,14 @@ int	ft_close_handle(t_fractal *fractal)
 
 int	ft_mouse_handle(int button, int x, int y, t_fractal *fractal)
 {
-	// zoom in 
+	(void)x,
+	(void)y;
 	if (button == Button5)
 		fractal->zoom = fractal->zoom * 1.05;
 	else if (button == Button4)
 		fractal->zoom = fractal->zoom * 0.95;
 	ft_fractal_render(fractal);
-	return  (0);
+	return (0);
 }
 
 /*
@@ -61,7 +62,6 @@ int	ft_key_handle(int keysym, t_fractal *fractal)
 		fractal->iterations_defenition += 10;
 	else if (keysym == XK_minus)
 		fractal->iterations_defenition -= 10;
-	// refresh the image
 	ft_fractal_render(fractal);
 	return (0);
 }

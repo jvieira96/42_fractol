@@ -6,7 +6,7 @@
 /*   By: jpedro-f <jpedro-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 23:42:21 by jpedro-f          #+#    #+#             */
-/*   Updated: 2025/02/03 15:39:10 by jpedro-f         ###   ########.fr       */
+/*   Updated: 2025/02/04 14:52:54 by jpedro-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,14 @@
 Scales the image
  [0..800] -> [-2..+2]
 */
-double	ft_map(double unscaled_num, double new_min, double new_max, double old_max)
+double	ft_map(double unscaled_num, double new_min,
+		double new_max, double old_max)
 {
 	double	old_min;
 
 	old_min = 0.0;
-	return (new_max - new_min) * (unscaled_num - old_min) / (old_max - old_min) + new_min;
+	return ((new_max - new_min) * (unscaled_num - old_min)
+		/ (old_max - old_min) + new_min);
 }
 
 /*
@@ -56,18 +58,17 @@ t_complex	ft_square_complex(t_complex	z)
 	return (result);
 }
 
-double	ft_atodbl(char	*str)
-{
-	long	int_part;
-	double	fractional_part;
-	int		sign;
-	double	power;
+/*
+	converts a string to a double
+*/
 
-	power = 1;
-	int_part = 0;
-	fractional_part = 0;
+double	ft_atodbl(char	*str, double fractional_part,
+		double power, int int_part)
+{
+	int		sign;
+
 	sign = 1;
-	while (*str == 32 || (*str >= 9 && *str<= 13))
+	while (*str == 32 || (*str >= 9 && *str <= 13))
 		str++;
 	while (*str == '+' || *str == '-')
 	{
@@ -79,7 +80,7 @@ double	ft_atodbl(char	*str)
 	{
 		int_part = (int_part * 10) + (*str - '0');
 		str++;
-	}	
+	}
 	if (*str == '.')
 		str++;
 	while (*str)
@@ -88,5 +89,5 @@ double	ft_atodbl(char	*str)
 		fractional_part = fractional_part + (*str - '0') * power;
 		str++;
 	}
-	return((int_part + fractional_part) * sign);
+	return ((int_part + fractional_part) * sign);
 }
