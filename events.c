@@ -6,7 +6,7 @@
 /*   By: jpedro-f <jpedro-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 16:15:08 by jpedro-f          #+#    #+#             */
-/*   Updated: 2025/02/04 16:23:59 by jpedro-f         ###   ########.fr       */
+/*   Updated: 2025/02/05 15:10:08 by jpedro-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,9 @@ int	ft_key_handle(int keysym, t_fractal *fractal)
 {
 	if (keysym == XK_Escape)
 		ft_close_handle(fractal);
-	else if (keysym == XK_Left)
-		fractal->shift_x += (0.5 * fractal->zoom);
 	else if (keysym == XK_Right)
+		fractal->shift_x += (0.5 * fractal->zoom);
+	else if (keysym == XK_Left)
 		fractal->shift_x -= (0.5 * fractal->zoom);
 	else if (keysym == XK_Up)
 		fractal->shift_y += (0.5 * fractal->zoom);
